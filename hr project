@@ -1,0 +1,30 @@
+-- SQL Query for calculating average salary by country
+SELECT Country, AVG(Salary) as Avg_Salary FROM hr_data GROUP BY Country;
+-- SQL Query for calculating average age by gender
+SELECT Gender, AVG(Age) as Avg_Age FROM hr_data GROUP BY Gender;
+-- SQL Query for work preferences by country
+SELECT Country, COUNT(*) as Count, Work_Preference FROM hr_data GROUP BY Country, Work_Preference;
+-- SQL Query for calculating sick leave percentage for days
+SELECT COUNT(*) * 100.0 / (SELECT COUNT(*) FROM hr_data) as Sick_Leave_Percentage FROM hr_data WHERE Sick_Leave_Days = 5;
+-- SQL Query for reasons for working from home
+SELECT Reason_For_WFH, COUNT(*) as Count FROM hr_data WHERE Work_Preference = 'Work From Home' GROUP BY Reason_For_WFH;
+--Average Salary by Year Joined
+SELECT Year_Joined, AVG(Salary) as Avg_Salary
+FROM hr_data
+GROUP BY Year_Joined
+ORDER BY Year_Joined;
+--Total Number of Employees by Year Joined
+SELECT Year_Joined, COUNT(*) as Total_Employees
+FROM hr_data
+GROUP BY Year_Joined
+ORDER BY Year_Joined;
+--Average Sick Leave Days by Year Joined
+SELECT Year_Joined, AVG(Sick_Leave_Days) as Avg_Sick_Leave
+FROM hr_data
+GROUP BY Year_Joined
+ORDER BY Year_Joined;
+--Work Preference by Country
+SELECT Country, Work_Preference, COUNT(*) as Total
+FROM hr_data
+GROUP BY Country, Work_Preference
+ORDER BY Country, Work_Preference;
